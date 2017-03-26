@@ -1,13 +1,13 @@
-﻿.login-panel-heading {
+﻿.login-panel-heading, .register-panel {
     margin-top: 40px;
 }
 
-.login-panel {
+.login-panel, .register-panel {
     width: 280px;
     border: none;
 }
 
-.login-panel-body {
+.login-panel-body, .register-panel-body {
     border: 1px solid #cecece !important;
     padding: 20px;
 }
@@ -45,7 +45,7 @@
         color: #2580db;
     }
 
-.login-form input {
+.login-form input, .register-form input {
     max-width: 225px;
 }
 
@@ -54,13 +54,15 @@
     margin-top: -10px;
 }
 
-.login-form button {
+.login-form button, .register-form button {
     margin-bottom: 5px;
     margin-left: 5px;
     max-width: 225px;
     width: 100%;
 }
 
-.login-form .validation-summary-errors ul {
+.login-form .validation-summary-errors ul, 
+.register-form .validation-summary-errors ul {
     padding-left: 20px;
 }
+
