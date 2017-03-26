@@ -8,6 +8,10 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-VideoOnDemand-91bcb38d-60dd-44e7-80e9-82805ade4028</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\css\login.css" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
