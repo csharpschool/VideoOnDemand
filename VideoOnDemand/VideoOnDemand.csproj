@@ -11,6 +11,14 @@
 
   <ItemGroup>
     <Content Include="wwwroot\css\login.css" />
+    <Content Include="wwwroot\images\avatar.png" />
+    <Content Include="wwwroot\images\course.jpg" />
+    <Content Include="wwwroot\images\course2.jpg" />
+    <Content Include="wwwroot\images\course3.jpg" />
+    <Content Include="wwwroot\images\Ice-Age-Scrat-icon.png" />
+    <Content Include="wwwroot\images\laptop.jpg" />
+    <Content Include="wwwroot\images\Logos\membership-icon-30x152.png" />
+    <Content Include="wwwroot\images\Logos\membership-icon-45x184.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.0.2" />
