@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using VideoOnDemand.Models;
 using AutoMapper;
 using VideoOnDemand.Repositories;
+using VideoOnDemand.Models.DTOModels;
+using VideoOnDemand.Models.MembershipViewModels;
 
 namespace VideoOnDemand.Controllers
 {
@@ -29,7 +31,16 @@ namespace VideoOnDemand.Controllers
         [HttpGet]
         public IActionResult Dashboard()
         {
-            return View();
+            var courseDtoObjects = _mapper.Map<List<CourseDTO>>(_db.GetCourses(_userId));
+
+            var dashboardModel = new DashboardViewModel();
+            dashboardModel.Courses = new List<List<CourseDTO>>();
+            var noOfRows = courseDtoObjects.Count <= 3 ? 1 : courseDtoObjects.Count / 3;
+            for (var i = 0; i < noOfRows; i++)
+            {
+                dashboardModel.Courses.Add(courseDtoObjects.Take(3).ToList());
+            }
+            return View(dashboardModel);
         }
 
         [HttpGet]
