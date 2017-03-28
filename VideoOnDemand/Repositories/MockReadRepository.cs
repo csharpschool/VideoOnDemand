@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using VideoOnDemand.Entities;
 
 namespace VideoOnDemand.Repositories
@@ -57,7 +58,21 @@ namespace VideoOnDemand.Repositories
             new Download{Id = 2, ModuleId = 1, CourseId = 1, Title = "ADO.NET 2 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg" },
             new Download{Id = 3, ModuleId = 3, CourseId = 2, Title = "ADO.NET 1 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg" }
         };
-
         #endregion
+
+        public IEnumerable<Course> GetCourses(string userId)
+        {
+            var courses = _userCourses.Where(uc => uc.UserId.Equals(userId))
+                .Join(_courses, uc => uc.CourseId, c => c.Id, (uc, c) => new { Course = c })
+                .Select(s => s.Course);
+
+            foreach (var course in courses)
+            {
+                course.Instructor = _instructors.SingleOrDefault(s => s.Id.Equals(course.InstructorId));
+                course.Modules = _modules.Where(m => m.CourseId.Equals(course.Id)).ToList();
+            }
+
+            return courses;
+        }
     }
 }
