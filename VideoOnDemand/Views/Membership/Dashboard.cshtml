@@ -4,7 +4,7 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<div class="membership top-margin dashboard-content">
+<div class="membership top-margin">
     <h2 class="text-dark">Dashboard</h2>
     <hr class="thick margin">
     @foreach (var dashboardRow in Model.Courses)
@@ -12,7 +12,7 @@
         <div class="row">
             @foreach (var course in dashboardRow)
             {
-                <h4>@course.CourseTitle</h4>
+                @await Html.PartialAsync("_CoursePanelPartial", course)
             }
         </div>
     }
