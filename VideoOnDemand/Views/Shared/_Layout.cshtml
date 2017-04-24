@@ -8,11 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VideoOnDemand</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i" rel="stylesheet">
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link rel="stylesheet" href="~/css/login.css" />
         <link rel="stylesheet" href="~/css/menu.css" />
+        <link rel="stylesheet" href="~/css/membership.css" />
+        <link rel="stylesheet" href="~/css/course-panel.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -21,6 +24,8 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/login.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/menu.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/membership.min.css" />
+        <link rel="stylesheet" href="~/css/course-panel.min.css" />
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
