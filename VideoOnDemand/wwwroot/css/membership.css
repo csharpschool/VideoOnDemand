@@ -49,3 +49,11 @@
                 background-color: #0577f0;
                 border-color: #0577f0;
             }
+
+body {
+    font-family: "Open Sans",sans-serif;
+}
+
+.membership h1, .membership h4 {
+    color: #666c74;
+}

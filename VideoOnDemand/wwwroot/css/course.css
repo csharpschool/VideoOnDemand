@@ -1,3 +1,21 @@
 ﻿.navigation-bar {
     margin-bottom: 10px;
 }
+
+.course-content .marquee {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative; /* Is needed for the cover image's absolute position */
+    background-size: cover;
+}
+
+    .course-content .marquee .cover-image {
+        width: auto;
+        height: 140px;
+        position: absolute;
+        bottom: 0;
+        margin: 30px;
+        border: 4px solid #FFF;
+        border-radius: 2px;
+    }
