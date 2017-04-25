@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Content Include="wwwroot\css\course-panel.css" />
+    <Content Include="wwwroot\css\course.css" />
     <Content Include="wwwroot\css\login.css" />
     <Content Include="wwwroot\css\membership.css" />
     <Content Include="wwwroot\css\menu.css" />
