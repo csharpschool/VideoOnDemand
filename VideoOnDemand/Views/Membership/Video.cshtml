@@ -26,7 +26,10 @@
             {
                 @await Html.PartialAsync("_VideoComingUpPartial", Model.LessonInfo)
             }
-            @*Place the Coming Up and Instructor Bio sections here*@
+            @if (Model != null && Model.Instructor != null)
+            {
+                @await Html.PartialAsync("_InstructorBioPartial", Model.Instructor)
+            }
         </div>
     </div>
 </div>
