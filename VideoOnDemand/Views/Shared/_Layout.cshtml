@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="~/css/course.css" />
         <link rel="stylesheet" href="~/css/module.css" />
         <link rel="stylesheet" href="~/css/instructor-bio.css" />
+        <link rel="stylesheet" href="~/css/video.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -32,6 +33,7 @@
         <link rel="stylesheet" href="~/css/course.min.css" />
         <link rel="stylesheet" href="~/css/module.min.css" />
         <link rel="stylesheet" href="~/css/instructor-bio.min.css" />
+        <link rel="stylesheet" href="~/css/video.min.css" />
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
@@ -74,6 +76,7 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://content.jwplatform.com/libraries/7mEts3ci.js"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
@@ -89,6 +92,7 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="https://content.jwplatform.com/libraries/7mEts3ci.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

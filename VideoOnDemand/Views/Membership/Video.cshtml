@@ -15,11 +15,30 @@
 
     <div class="row">
         <div class="col-sm-9">
-            @await Html.PartialAsync("_VideoPlayerPartial", Model)
+            @if (Model != null && Model.Video != null && Model.LessonInfo != null && Model.Course != null)
+            {
+                @await Html.PartialAsync("_VideoPlayerPartial", Model)
+            }
         </div>
 
         <div class="col-sm-3">
+            @if (Model != null && Model.LessonInfo != null)
+            {
+                @await Html.PartialAsync("_VideoComingUpPartial", Model.LessonInfo)
+            }
             @*Place the Coming Up and Instructor Bio sections here*@
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            jwplayer("video").setup({
+                file: $("#hiddenUrl").text(),
+                image: $("#hiddenImageUrl").text()
+            });
+        });
+    </script>
+}

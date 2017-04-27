@@ -1,0 +1,30 @@
+@model LessonInfoDTO
+
+@if (Model.PreviousVideoId > 0 || Model.NextVideoId > 0)
+{
+    <div class="panel coming-up">
+        <img src="@Model.NextVideoThumbnail" class="img-responsive">
+        <div class="panel-body">
+            <p>COMING UP</p>
+            <h5>@Model.NextVideoTitle</h5>
+            <div class="btn-group" role="group">
+                @if (Model.PreviousVideoId == 0)
+                {
+                    <a class="btn btn-default" disabled href="~/Membership/Video/@Model.PreviousVideoId">Previous</a>
+                }
+                else
+                {
+                    <a class="btn btn-default" href="~/Membership/Video/@Model.PreviousVideoId">Previous</a>
+                }
+                @if (Model.NextVideoId == 0)
+                {
+                    <a class="btn btn-default" disabled href="~/Membership/Video/@Model.NextVideoId">Next</a>
+                }
+                else
+                {
+                    <a class="btn btn-default" href="~/Membership/Video/@Model.NextVideoId">Next</a>
+                }
+            </div>
+        </div>
+    </div>
+}

@@ -17,6 +17,7 @@
     <Content Include="wwwroot\css\membership.css" />
     <Content Include="wwwroot\css\menu.css" />
     <Content Include="wwwroot\css\module.css" />
+    <Content Include="wwwroot\css\video.css" />
     <Content Include="wwwroot\images\avatar.png" />
     <Content Include="wwwroot\images\course.jpg" />
     <Content Include="wwwroot\images\course2.jpg" />
