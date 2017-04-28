@@ -3,10 +3,28 @@
 @if (Model.PreviousVideoId > 0 || Model.NextVideoId > 0)
 {
     <div class="panel coming-up">
-        <img src="@Model.NextVideoThumbnail" class="img-responsive">
+        @if (Model.NextVideoId == 0)
+        {
+            <img src="@Model.CurrentVideoThumbnail" class="img-responsive">
+        }
+        else
+        {
+            <img src="@Model.NextVideoThumbnail" class="img-responsive">
+        }
+        
         <div class="panel-body">
-            <p>COMING UP</p>
-            <h5>@Model.NextVideoTitle</h5>
+            @if (Model.NextVideoId == 0)
+            {
+                <p>COURSE COMPLETED</p>
+                <h5>@Model.CurrentVideoTitle</h5>
+
+            }
+            else
+            {
+                <p>COMING UP</p>
+                <h5>@Model.NextVideoTitle</h5>
+            }
+            
             <div class="btn-group" role="group">
                 @if (Model.PreviousVideoId == 0)
                 {
