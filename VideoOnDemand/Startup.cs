@@ -55,7 +55,7 @@ namespace VideoOnDemand
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddSingleton<IReadRepository, MockReadRepository>();
+            services.AddSingleton<IReadRepository, SqlReadRepository>();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {

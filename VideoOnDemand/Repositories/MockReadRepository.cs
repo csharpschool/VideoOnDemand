@@ -15,9 +15,9 @@ namespace VideoOnDemand.Repositories
 
         List<UserCourse> _userCourses = new List<UserCourse>
         {
-            new UserCourse { UserId = "4ad684f8-bb70-4968-85f8-458aa7dc19a3" , CourseId = 1 },
+            new UserCourse { UserId = "649112c5-a8e9-4312-9fff-fbec8d717f99" , CourseId = 1 },
             new UserCourse { UserId = "00000000-0000-0000-0000-000000000000" , CourseId = 2 },
-            new UserCourse { UserId = "4ad684f8-bb70-4968-85f8-458aa7dc19a3" , CourseId = 3 },
+            new UserCourse { UserId = "649112c5-a8e9-4312-9fff-fbec8d717f99" , CourseId = 3 },
             new UserCourse { UserId = "00000000-0000-0000-0000-000000000000" , CourseId = 1 }
         };
 
