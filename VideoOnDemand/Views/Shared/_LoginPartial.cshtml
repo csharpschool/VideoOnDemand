@@ -8,8 +8,8 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
         <ul class="nav navbar-nav navbar-right">
-            <li>@User.Identity.Name</li>
-            <li class="dropdown pull-right">
+            <li class="hidden-xs">@User.Identity.Name</li>
+            <li class="dropdown pull-right hidden-xs">
                 <a href="#" id="user-dropdown" class="dropdown-toggle user-dropdown" data-toggle="dropdown" role="button" aria-expanded="false">
                     <img src="~/images/avatar.png" class="img-circle avatar" alt="" height="40">
                     <span class="caret text-light hidden-xs"></span>
@@ -19,6 +19,10 @@
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
                 </ul>
             </li>
+
+            @*Menu items for xs-devices*@
+            <li class="visible-xs"><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Settings</a></li>
+            <li class="visible-xs"><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
         </ul>
     </form>
 }
