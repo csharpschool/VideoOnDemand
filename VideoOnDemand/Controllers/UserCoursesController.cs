@@ -138,6 +138,36 @@ namespace VideoOnDemand.Controllers
             return View(userCourse);
         }
 
+        public async Task<IActionResult> Delete(string userId, int courseId)
+        {
+            if (userId == null || courseId.Equals(default(int)))
+            {
+                return NotFound();
+            }
+
+            var model = await _db.Courses
+                .Join(_db.UserCourses, c => c.Id, uc => uc.CourseId, (c, uc) => new { Courses = c, UserCourses = uc })
+                .Select(s => new UserCourseDTO { CourseId = s.Courses.Id, CourseTitle = s.Courses.Title, UserId = s.UserCourses.UserId, UserEmail = _userStore.Users.FirstOrDefault(u => u.Id.Equals(s.UserCourses.UserId)).Email })
+                .FirstOrDefaultAsync(w => w.CourseId.Equals(courseId) && w.UserId.Equals(userId));
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string userId, int courseId)
+        {
+            var userCourse = await _db.UserCourses.SingleOrDefaultAsync(m => m.UserId.Equals(userId) && m.CourseId.Equals(courseId));
+            _db.UserCourses.Remove(userCourse);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         #region Alternate Edit Action
         //[HttpPost, ActionName("Edit")]
         //[ValidateAntiForgeryToken]

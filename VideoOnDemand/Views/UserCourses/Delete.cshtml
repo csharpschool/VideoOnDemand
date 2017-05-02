@@ -1,0 +1,30 @@
+@model UserCourseDTO
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <h4>Users and Courses</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.CourseId)</dt>
+        <dd>@Html.DisplayFor(model => model.CourseId)</dd>
+        <dt>@Html.DisplayNameFor(model => model.CourseTitle)</dt>
+        <dd>@Html.DisplayFor(model => model.CourseTitle)</dd>
+        <dt>@Html.DisplayNameFor(model => model.UserEmail)</dt>
+        <dd>@Html.DisplayFor(model => model.UserEmail)</dd>
+        <dt>@Html.DisplayNameFor(model => model.UserId)</dt>
+        <dd>@Html.DisplayFor(model => model.UserId)</dd>
+    </dl>
+</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="CourseId" />
+    <input type="submit" value="Delete" class="btn btn-default btn-sm" />
+
+    <a asp-action="Edit" asp-route-courseId="@Model.CourseId" asp-route-userId="@Model.UserId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</form>
