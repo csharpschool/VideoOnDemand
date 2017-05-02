@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using VideoOnDemand.Data;
+using VideoOnDemand.Entities;
 using VideoOnDemand.Models;
 using VideoOnDemand.Models.DTOModels;
 
@@ -48,5 +50,36 @@ namespace VideoOnDemand.Controllers
 
             return View(model);
         }
+
+        public IActionResult Create()
+        {
+            ViewData["CourseId"] = new SelectList(_db.Courses, "Id", "Title");
+            ViewData["UserId"] = new SelectList(_userStore.Users, "Id", "Email");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("UserId,CourseId")] UserCourse userCourse)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _db.Add(userCourse);
+                    await _db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "That combination already exist.");
+                }
+            }
+            ViewData["CourseId"] = new SelectList(_db.Courses, "Id", "Title", userCourse.CourseId);
+            ViewData["UserId"] = new SelectList(_userStore.Users, "Id", "Email");
+            return View();
+        }
+
+
     }
 }

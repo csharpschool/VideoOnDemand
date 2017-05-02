@@ -43,6 +43,7 @@ namespace VideoOnDemand
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddSingleton<UserStore<ApplicationUser, IdentityRole, ApplicationDbContext>>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -56,7 +57,6 @@ namespace VideoOnDemand
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddSingleton<IReadRepository, SqlReadRepository>();
-            services.AddSingleton<UserStore<ApplicationUser, IdentityRole, ApplicationDbContext>>();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
