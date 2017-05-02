@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using VideoOnDemand.Data;
@@ -80,6 +81,91 @@ namespace VideoOnDemand.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Edit(string userId, int courseId)
+        {
+            if (userId == null || courseId.Equals(default(int)))
+            {
+                return NotFound();
+            }
 
+            var model = await _db.UserCourses.SingleOrDefaultAsync(m => m.UserId.Equals(userId) && m.CourseId.Equals(courseId));
+
+            if (model == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["CourseId"] = new SelectList(_db.Courses, "Id", "Title");
+            ViewData["UserId"] = new SelectList(_userStore.Users, "Id", "Email");
+            return View(model);
+        }
+
+        private bool UserCourseExists(string userId, int courseId)
+        {
+            return _db.UserCourses.Any(e => e.UserId.Equals(userId) && e.CourseId.Equals(courseId));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string originalUserId, int originalCourseId, [Bind("UserId,CourseId")] UserCourse userCourse)
+        {
+            if (originalUserId == null || originalCourseId.Equals(default(int)))
+            {
+                return NotFound();
+            }
+
+            var orignalUserCourse = await _db.UserCourses
+                .SingleOrDefaultAsync(c => c.UserId.Equals(originalUserId) && c.CourseId.Equals(originalCourseId));
+
+            if (!UserCourseExists(userCourse.UserId, userCourse.CourseId))
+            {
+                try
+                {
+                    _db.Remove(orignalUserCourse);
+                    _db.Add(userCourse);
+                    await _db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                }
+            }
+
+            ModelState.AddModelError("", "Unable to save changes.");
+            ViewData["CourseId"] = new SelectList(_db.Courses, "Id", "Title", userCourse.CourseId);
+            ViewData["UserId"] = new SelectList(_userStore.Users, "Id", "Email");
+
+            return View(userCourse);
+        }
+
+        #region Alternate Edit Action
+        //[HttpPost, ActionName("Edit")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(string originalUserId, int originalCourseId)
+        //{
+        //    if (originalUserId == null && originalCourseId < 1)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var studentToUpdate = await _db.UserCourses.SingleOrDefaultAsync(s => s.UserId == originalUserId && s.CourseId == originalCourseId);
+        //    if (await TryUpdateModelAsync<UserCourse>(
+        //        studentToUpdate,
+        //        "",
+        //        s => s.UserId, s => s.CourseId))
+        //    {
+        //        try
+        //        {
+        //            await _db.SaveChangesAsync();
+        //            return RedirectToAction("Index");
+        //        }
+        //        catch (DbUpdateException)
+        //        {
+        //            ModelState.AddModelError("", "Unable to save changes.");
+        //        }
+        //    }
+        //    return View(studentToUpdate);
+        //}
+        #endregion
     }
 }
