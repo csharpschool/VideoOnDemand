@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VideoOnDemand.Data;
 using VideoOnDemand.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VideoOnDemand.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Route("admin/[controller]/[action]")]
     public class ModulesController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,8 @@ using VideoOnDemand.Models.DTOModels;
 
 namespace VideoOnDemand.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Route("admin/[controller]/[action]")]
     public class UserCoursesController : Controller
     {
         private readonly ApplicationDbContext _db;
