@@ -14,6 +14,7 @@ namespace VideoOnDemand.Tag_Helpers
         #region Properties
         public string Controller { get; set; }
         public string Actions { get; set; }
+        public string Descriptions { get; set; }
         #endregion
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -27,16 +28,26 @@ namespace VideoOnDemand.Tag_Helpers
             output.Content.SetHtmlContent("<span style='min-width:100px; display:inline-block;'>");
 
             var href = "";
-            var action = Actions;
 
-            if (Controller != null && Controller.Length > 0)
+            var actions = Actions.Split(',');
+            var descriptions = Descriptions!= null ? Descriptions.Split(',') : new string[0];
+            foreach (var action in actions)
             {
-                if (action != null && action.Length > 0)
-                    href = $@"href='/admin/{Controller}/{action}'";
-                else href = $@"href='/admin/{Controller}/Index'";
-            }
 
-            output.Content.AppendHtml($@"<a {href}>My link</a>");
+                if (Controller != null && Controller.Length > 0)
+                {
+                    if (action != null && action.Length > 0)
+                        href = $@"href='/admin/{Controller}/{action}'";
+                    else href = $@"href='/admin/{Controller}/Index'";
+                }
+
+                var description = action;
+                if (descriptions.Length >= actions.Length)
+                    description = descriptions[Array.IndexOf(actions, action)];
+                if(description.Length.Equals(0)) description = action;
+
+                output.Content.AppendHtml($@"<a {href}>{description}</a>");
+            }
 
             output.Content.AppendHtml("</span>");
         }
