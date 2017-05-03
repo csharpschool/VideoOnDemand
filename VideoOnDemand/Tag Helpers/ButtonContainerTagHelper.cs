@@ -30,7 +30,8 @@ namespace VideoOnDemand.Tag_Helpers
             var href = "";
 
             var actions = Actions.Split(',');
-            var descriptions = Descriptions!= null ? Descriptions.Split(',') : new string[0];
+            var descriptions = Descriptions != null ? Descriptions.Split(',') : new string[0];
+            var ids = context.AllAttributes.Where(c => c.Name.StartsWith("id"));
             foreach (var action in actions)
             {
 
@@ -45,6 +46,17 @@ namespace VideoOnDemand.Tag_Helpers
                 if (descriptions.Length >= actions.Length)
                     description = descriptions[Array.IndexOf(actions, action)];
                 if(description.Length.Equals(0)) description = action;
+
+                var param = "";
+                foreach (var id in ids)
+                {
+                    var splitId = id.Name.Split('-');
+                    if (splitId.Length.Equals(1)) param = $"Id={id.Value}";
+                    if (splitId.Length.Equals(2)) param += $"&{splitId[1]}={id.Value}";
+                    if (param.StartsWith("&")) param = param.Substring(1);
+                }
+                if (param.Length > 0) href = href.Insert(href.Length - 1,$"?{param}");
+
 
                 output.Content.AppendHtml($@"<a {href}>{description}</a>");
             }
