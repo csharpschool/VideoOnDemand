@@ -17,6 +17,7 @@ namespace VideoOnDemand.Tag_Helpers
         public string Descriptions { get; set; }
         public bool UseGlyphs { get; set; }
         private Dictionary<string, string> ButtonGlyphs = new Dictionary<string, string> { { "edit", "pencil" }, { "create", "th-list" }, { "delete", "remove" }, { "details", "info-sign" }, { "index", "list-alt" } };
+        private Dictionary<string, string> ButtonTypes = new Dictionary<string, string> { { "edit", "success" }, { "create", "primary" }, { "delete", "danger" }, { "details", "primary" }, { "index", "primary" } };
         #endregion
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -64,12 +65,20 @@ namespace VideoOnDemand.Tag_Helpers
                 {
                     var glyph = "";
                     ButtonGlyphs.TryGetValue(action.ToLower(), out glyph);
-                    if(glyph != null && glyph.Length > 0)
+                    if (glyph != null && glyph.Length > 0)
+                    {
                         classAttr = $"class='glyphicon glyphicon-{glyph}'";
+                        description = string.Empty;
+                    }
                 }
 
+                var button = "";
+                ButtonTypes.TryGetValue(action.ToLower(), out button);
+                var buttonClass = string.Empty;
+                if(button != null && button.Length > 0)
+                    buttonClass = $@"class='btn-sm btn-{button}'";
 
-                output.Content.AppendHtml($@"<a {href}><span {classAttr}></span>{description}</a>");
+                output.Content.AppendHtml($@"<a {buttonClass} {href}><span {classAttr}></span>{description}</a>");
             }
 
             output.Content.AppendHtml("</span>");
