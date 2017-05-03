@@ -13,6 +13,10 @@ namespace VideoOnDemand.Tag_Helpers
     {
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
+            if (context == null) throw new ArgumentNullException(nameof(context));
+            if (output == null) throw new ArgumentNullException(nameof(output));
+
+            base.Process(context, output);
         }
     }
 }
