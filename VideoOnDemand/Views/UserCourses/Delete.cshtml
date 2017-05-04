@@ -4,7 +4,7 @@
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="admin-top-margin">Delete</h2>
 
 <div>
     <h4>Users and Courses</h4>
@@ -25,6 +25,5 @@
     <input type="hidden" asp-for="CourseId" />
     <input type="submit" value="Delete" class="btn btn-default btn-sm" />
 
-    <a asp-action="Edit" asp-route-courseId="@Model.CourseId" asp-route-userId="@Model.UserId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <button-container controller="@ViewContext.RouteData.Values["controller"].ToString()" actions="Index,Edit" id-userId="@Model.UserId" id-courseId="@Model.CourseId" descriptions="Back to List"></button-container>
 </form>

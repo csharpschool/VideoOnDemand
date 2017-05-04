@@ -27,3 +27,15 @@
         color: #666c74;
         padding: 15px 40px 15px 20px;
     }
+
+.navbar-brand {
+    padding-top:21px;
+}
+
+ul.navbar-right {
+    padding-top: 8px;
+}
+
+.navbar .container {
+    min-height:70px;
+}

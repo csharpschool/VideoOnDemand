@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\css\admin.css" />
     <Content Include="wwwroot\css\course-panel.css" />
     <Content Include="wwwroot\css\course.css" />
     <Content Include="wwwroot\css\instructor-bio.css" />

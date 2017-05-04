@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="admin-top-margin">Details</h2>
 
 <div>
     <h4>Users and Courses</h4>
@@ -21,6 +21,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-courseId="@Model.CourseId" asp-route-userId="@Model.UserId">Edit</a> | 
-    <a asp-action="Index">Back to List</a>
+    <button-container controller="@ViewContext.RouteData.Values["controller"].ToString()" actions="Index,Edit" id-userId="@Model.UserId" id-courseId="@Model.CourseId" descriptions="Back to List"></button-container>
 </div>

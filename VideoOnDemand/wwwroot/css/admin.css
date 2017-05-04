@@ -1,0 +1,12 @@
+﻿a.btn-sm {
+    text-decoration: none;
+    border-radius: 0px;
+}
+
+.button-col-width {
+    min-width: 125px;
+}
+
+.admin-top-margin {
+    margin-top: 30px;
+}

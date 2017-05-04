@@ -70,6 +70,6 @@
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <button-container controller="@ViewContext.RouteData.Values["controller"].ToString()" actions="Index" descriptions="Back to List"></button-container>
 </div>
 
