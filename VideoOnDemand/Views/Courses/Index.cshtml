@@ -50,6 +50,15 @@
             </td>
             <td class="button-col-width">
                 <button-container controller="@ViewContext.RouteData.Values["controller"].ToString()" actions="Edit,Details,Delete" use-glyphs="true" id="@item.Id"></button-container>
+                <alternate-button-container controller="@ViewContext.RouteData.Values["controller"].ToString()"
+                                  action-edit action-details action-delete
+                                  btn-edit-success btn-details-primary btn-delete-danger
+                                  txt-edit="Edit"
+                                  gly-edit="th-list"
+                                  glyphs
+                                  id="@item.Id"></alternate-button-container>
+
+
             </td>
         </tr>
 }
